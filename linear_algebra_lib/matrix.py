@@ -27,7 +27,8 @@ class Matrix:
         [self.data[i][j] + other.data[i][j] for j in range(self.cols)] for i in range(self.rows)]
         
         return Matrix(result)
- 
+
+
     def __subtract__(self,other):
 
         if self.rows != other.rows or self.cols != other.cols:
@@ -37,3 +38,19 @@ class Matrix:
         [self.data[i][j] - other.data[i][j] for j in range(self.cols)] for i in range(self.rows)]
         
         return Matrix(result)
+
+    def __multiply__(self,other):
+        
+        if self.cols != other.rows:
+            raise ValueError('Matrix A columns must be equal to matrix B rows.')
+        
+        result = [[0 for j in range(other.cols)] for i in range(self.rows)]
+        
+        for i in range(self.rows):
+            for j in range(other.cols):
+                for k in range(self.cols):
+                    result[i][j] += self.data[i][k] * other.data[k][j]
+        
+        return Matrix(result)
+    
+    
