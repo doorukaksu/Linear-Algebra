@@ -52,5 +52,17 @@ class Matrix:
                     result[i][j] += self.data[i][k] * other.data[k][j]
         
         return Matrix(result)
+
+    def __scalar_multiply__(self,multiplier):
+
+        result =  result = [[0 for j in range(self.cols)] for i in range(self.rows)]
+
+        for i in range(self.rows):
+            for j in range(self.cols):
+                result[i][j] += self.data[i][j] * multiplier
+    
+        return result
+
+
     
     
